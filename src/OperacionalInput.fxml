@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="278.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MachineInputController">
+<VBox alignment="CENTER" prefHeight="278.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
     <Label text="Operacional">
       <font>
          <Font size="18.0" />
@@ -15,7 +15,7 @@
     <TextField fx:id="txtCusto" alignment="CENTER" promptText="Horas Diárias" />
    <TextField fx:id="txtVidaUtil21" alignment="CENTER" promptText="Despesas Operacionais" />
     <TextField fx:id="txtVidaUtil" alignment="CENTER" promptText="Custo Operador" />
-    <Button onAction="#handleSalvar" prefHeight="26.0" prefWidth="145.0" text="Salvar">
+    <Button prefHeight="26.0" prefWidth="145.0" text="Salvar">
       <font>
          <Font size="18.0" />
       </font></Button>
