@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/CalcMain.fxml"));
 
         // Configurar a cena e exibir a janela
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 380);
         primaryStage.setTitle("Sua Aplicação");
         primaryStage.setScene(scene);
         primaryStage.show();

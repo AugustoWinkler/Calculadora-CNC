@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MachineController">
    <children>
       <Pane layoutX="12.0" layoutY="14.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
          <children>
@@ -19,7 +18,7 @@
                </font>
             </Label>
             <ComboBox layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" text="Adicionar" />
+            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleAddMachine" text="Adicionar" />
             <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover" />
          </children>
       </Pane>
