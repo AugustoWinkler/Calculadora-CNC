@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -55,5 +56,13 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    public Label lblResultTotal;
+
+    @FXML
+    public void handleCalcular() {
+    	lblResultTotal.setText("10,0R$");
     }
 }

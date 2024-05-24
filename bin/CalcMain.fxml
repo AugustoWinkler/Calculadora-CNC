@@ -60,7 +60,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="254.0" text="Calcular">
+            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#handleCalcular" prefHeight="51.0" prefWidth="254.0" text="Calcular">
                <font>
                   <Font size="18.0" />
                </font>
@@ -110,7 +110,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="644.0" layoutY="122.0" text="0,0R$">
+            <Label fx:id="lblResultTotal" layoutX="644.0" layoutY="122.0" text="0,0R$">
                <font>
                   <Font size="16.0" />
                </font>
