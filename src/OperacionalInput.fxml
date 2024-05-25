@@ -6,11 +6,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="278.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<VBox alignment="CENTER" prefHeight="278.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OperacionalInputController">
     <Label text="Operacional">
       <font>
          <Font size="18.0" />
       </font></Label>
+   <TextField fx:id="txtNomeMaquina1" alignment="CENTER" promptText="Tag Operacional" />
     <TextField fx:id="txtNomeMaquina" alignment="CENTER" promptText="Dias de Trabalho" />
     <TextField fx:id="txtCusto" alignment="CENTER" promptText="Horas Diárias" />
    <TextField fx:id="txtVidaUtil21" alignment="CENTER" promptText="Despesas Operacionais" />

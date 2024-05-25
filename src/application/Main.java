@@ -10,10 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Carregar o arquivo FXML
+        // Load FXML file
         Parent root = FXMLLoader.load(getClass().getResource("/CalcMain.fxml"));
 
-        // Configurar a cena e exibir a janela
+        // Show scene
         Scene scene = new Scene(root, 800, 380);
         primaryStage.setTitle("Sua Aplicação");
         primaryStage.setScene(scene);

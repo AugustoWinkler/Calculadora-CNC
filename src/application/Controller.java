@@ -48,7 +48,7 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/OperacionalInput.fxml"));
             Parent root = loader.load();
 
-            // Create a new stage for the popup
+            
             Stage stage = new Stage();
             stage.setTitle("Adicionar Máquina");
             stage.setScene(new Scene(root));
