@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Button layoutX="205.0" layoutY="200.0" mnemonicParsing="false" onAction="#updateText" prefHeight="35.0" prefWidth="190.0" text="Calcular" />
+      <TextField fx:id="valorMaquina" layoutX="14.0" layoutY="40.0" promptText="Valor máquina" />
+      <TextField fx:id="vidaUtil" layoutX="14.0" layoutY="92.0" promptText="Vida útil" />
+      <TextField fx:id="valorResidual" layoutX="14.0" layoutY="66.0" promptText="Valor residual" />
+      <TextField fx:id="diasTrabalho" layoutX="205.0" layoutY="40.0" promptText="Dias de trabalho" />
+      <TextField fx:id="horasTrabalho" layoutX="205.0" layoutY="66.0" promptText="Horas de trabalho" />
+      <Label fx:id="lblResultado" layoutX="14.0" layoutY="315.0" text="Resultado">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" layoutX="14.0" layoutY="350.0" text="Resultado Total">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="porcentagemGanho" layoutX="205.0" layoutY="144.0" promptText="Porcentagem de ganho" />
+      <TextField fx:id="salarioOperador" layoutX="375.0" layoutY="40.0" promptText="Salario Operador" />
+      <TextField fx:id="despezas" layoutX="375.0" layoutY="66.0" promptText="Despezas" />
+      <TextField fx:id="valorLaser" layoutX="14.0" layoutY="118.0" promptText="ValorLaser" />
+      <TextField fx:id="vidaUtilLaser" layoutX="14.0" layoutY="144.0" promptText="Vida útil Laser" />
+   </children>
+</AnchorPane>
