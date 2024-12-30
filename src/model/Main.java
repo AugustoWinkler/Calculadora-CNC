@@ -13,8 +13,12 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/Main.FXML"));
 			Scene scene = new Scene(root);
+			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			SavedMachines savedMachines = new SavedMachines();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

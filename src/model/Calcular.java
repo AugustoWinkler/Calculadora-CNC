@@ -21,8 +21,6 @@ public class Calcular {
 
 		
 		double maquina = (this.calcDepreciacaoMaquina(valorMaquinaTf, valorResidualTf, vidaUtilTf) / 12) / this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
-		
-		
 		double laser = this.calcDepreciacaoLaser(valorLaserTf, vidaUtilLaserTf);
 		double trabalho =this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
 		double salario = this.calcSalarioOperadorEDespezas(salarioOperadorTf, despezasTf)/this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
