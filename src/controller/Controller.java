@@ -7,49 +7,72 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import model.Calcular;
 import model.Machine;
+import model.Material;
 import model.OpenTabs;
 import model.SavedMachines;
+import model.SavedMaterials;
 
 public class Controller {
-    @FXML
-    private ComboBox<String> machineCombo;
+	@FXML
+	private ComboBox<String> machineCombo;
+	@FXML
+	private ComboBox<String> materialCombo;
 
-    private Calcular calcular;
-    private OpenTabs openTabs;
+	private Calcular calcular;
+	private OpenTabs openTabs;
 
-    private MachineInputController machineInputController; 
-    @FXML
-    public void initialize() {
-        this.calcular = new Calcular(); 
-        this.openTabs = new OpenTabs();
-        updateMachineCombo();
+	private MachineInputController machineInputController;
+	private MaterialInputController materialInputController;
 
-    }
-    
-    public void refresh() {
-    	this.updateMachineCombo();
-    }
-    public void updateMachineCombo() {
-        machineCombo.getItems().clear();
-        for (Machine machine : SavedMachines.getInstance().getMachines()) {
-            machineCombo.getItems().add(machine.getName());
-        }
-    }
-    
+	@FXML
+	public void initialize() {
+		this.calcular = new Calcular();
+		this.openTabs = new OpenTabs();
+		updateMachineCombo();
+		updateMaterialCombo();
+
+	}
 
 
-    @FXML
-    private void addMachine(ActionEvent event) throws IOException {
-        openTabs.openAddTab("/view/MachineInput.FXML", "Nova Máquina");
-    }
+	public void updateMachineCombo() {
+		machineCombo.getItems().clear();
+		for (Machine machine : SavedMachines.getInstance().getMachines()) {
+			machineCombo.getItems().add(machine.getName());
+		}
+	}
+	public void updateMaterialCombo() {
+		materialCombo.getItems().clear();
+		for (Material material : SavedMaterials.getInstance().getMaterial()) {
+			materialCombo.getItems().add(material.getName());
+		}
+	}
 
-    @FXML
-    private void addMaterial(ActionEvent event) throws IOException {
-        openTabs.openAddTab("/view/MaterialInput.FXML", "Novo Material");
-    }
+	@FXML
+	private void addMachine(ActionEvent event) throws IOException {
 
-    @FXML
-    private void addOperacional(ActionEvent event) throws IOException {
-        openTabs.openAddTab("/view/OperacionalInput.FXML", "Novo Operacional");
-    }
+		machineInputController = openTabs.openAddTab("/view/MachineInput.fxml", "Nova Máquina");
+
+		if (machineInputController != null) {
+			machineInputController.setMainController(this);
+		} else {
+			System.out.println("MachineInputController está nulo!");
+		}
+	}
+
+	@FXML
+	private void addMaterial(ActionEvent event) throws IOException {
+		
+		materialInputController = openTabs.openAddTab("/view/MaterialInput.FXML", "Novo Material");
+		
+		if (materialInputController != null) {
+			materialInputController.setMainController(this);
+		} else {
+			System.out.println("MaterialInputController está nulo!");
+		}
+	}
+
+	@FXML
+	private void addOperacional(ActionEvent event) throws IOException {
+		openTabs.openAddTab("/view/OperacionalInput.FXML", "Novo Operacional");
+	}
 }

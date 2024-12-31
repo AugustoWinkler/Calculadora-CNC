@@ -7,7 +7,7 @@ import model.Machine;
 import model.SavedMachines;
 
 public class MachineInputController {
-
+	private Controller mainController;
     @FXML
     private TextField txtNameMachine;
     @FXML
@@ -33,9 +33,17 @@ public class MachineInputController {
         		txtLaserUsefulLife
         );
         SavedMachines.getInstance().addMachine(newMachine);
-        
         System.out.println("Máquina adicionada: " + newMachine.getName());
+        if (mainController != null) {
+            mainController.updateMachineCombo(); 
+		} else {
+			System.out.println("mainController está nulo!");
+		}
+	}
 
-    }
+
+	public void setMainController(Controller mainController) {
+		this.mainController = mainController;	
+	}
 
 }
