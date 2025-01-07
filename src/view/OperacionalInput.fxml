@@ -6,16 +6,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="278.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="308.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OperacionalInputController">
     <Label text="Operacional">
       <font>
          <Font size="18.0" />
       </font></Label>
-    <TextField fx:id="txtNomeMaquina" alignment="CENTER" promptText="Dias de Trabalho" />
-    <TextField fx:id="txtCusto" alignment="CENTER" promptText="Horas Diárias" />
-   <TextField fx:id="txtVidaUtil21" alignment="CENTER" promptText="Despesas Operacionais" />
-    <TextField fx:id="txtVidaUtil" alignment="CENTER" promptText="Custo Operador" />
-    <Button prefHeight="26.0" prefWidth="145.0" text="Salvar">
+   <TextField fx:id="txtDescOperacional" alignment="CENTER" promptText="Descrição" />
+    <TextField fx:id="txtDaysOfWork" alignment="CENTER" promptText="Dias de Trabalho" />
+    <TextField fx:id="txtHoursPerDay" alignment="CENTER" promptText="Horas Diárias" />
+   <TextField fx:id="txtOperacionalCosts" alignment="CENTER" promptText="Despesas Operacionais" />
+    <TextField fx:id="txtOperatorValue" alignment="CENTER" promptText="Custo Operador" />
+    <Button onAction="#addOperacional" prefHeight="26.0" prefWidth="145.0" text="Salvar">
       <font>
          <Font size="18.0" />
       </font></Button>

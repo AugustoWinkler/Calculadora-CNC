@@ -9,20 +9,25 @@ import model.Calcular;
 import model.Machine;
 import model.Material;
 import model.OpenTabs;
+import model.Operacional;
 import model.SavedMachines;
 import model.SavedMaterials;
+import model.SavedOperacional;
 
 public class Controller {
 	@FXML
 	private ComboBox<String> machineCombo;
 	@FXML
 	private ComboBox<String> materialCombo;
+	@FXML
+	private ComboBox<String> operacinalCombo;
 
 	private Calcular calcular;
 	private OpenTabs openTabs;
 
 	private MachineInputController machineInputController;
 	private MaterialInputController materialInputController;
+	private OperacionalInputController operacionalInputController;
 
 	@FXML
 	public void initialize() {
@@ -30,6 +35,7 @@ public class Controller {
 		this.openTabs = new OpenTabs();
 		updateMachineCombo();
 		updateMaterialCombo();
+		updateOperacionalCombo();
 
 	}
 
@@ -44,6 +50,12 @@ public class Controller {
 		materialCombo.getItems().clear();
 		for (Material material : SavedMaterials.getInstance().getMaterial()) {
 			materialCombo.getItems().add(material.getName());
+		}
+	}
+	public void updateOperacionalCombo() {
+		operacinalCombo.getItems().clear();
+		for (Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
+			operacinalCombo.getItems().add(operacional.getDesc());
 		}
 	}
 
@@ -73,6 +85,13 @@ public class Controller {
 
 	@FXML
 	private void addOperacional(ActionEvent event) throws IOException {
-		openTabs.openAddTab("/view/OperacionalInput.FXML", "Novo Operacional");
+		
+		operacionalInputController = openTabs.openAddTab("/view/OperacionalInput.FXML", "Novo Horario");
+		
+		if (operacionalInputController != null) {
+			operacionalInputController.setMainController(this);
+		} else {
+			System.out.println("Operacinal InputController está nulo!");
+		}
 	}
 }
