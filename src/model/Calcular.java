@@ -6,6 +6,35 @@ public class Calcular {
 	
 	
 	
+	public Machine findMachine(String name) {
+		for(Machine machine : SavedMachines.getInstance().getMachines()) {
+			if(machine.getName() == name) {
+				System.out.println(machine.toString());
+				return machine;
+			}
+		}
+		return null;
+	}
+	public Material findMaterial(String name) {
+		for(Material material : SavedMaterials.getInstance().getMaterial()) {
+			if(material.getName() == name) {
+				System.out.println(material.toString());
+				return material;
+			}
+		}
+		return null;
+	}
+	public Operacional findOperacional(String name) {
+		for(Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
+			if(operacional.getDesc() == name) {
+				System.out.println(operacional.toString());
+				return operacional;
+			}
+		}
+		return null;
+	}
+	
+	
 	
 	public Double calcTotal(
 			TextField valorMaquinaTf,

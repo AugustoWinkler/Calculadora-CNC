@@ -22,6 +22,11 @@ public class Material {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "Material [name=" + name + ", price=" + price + "]";
+	}
+	
 	//getters and setters
 	public String getName() {
 		return name;

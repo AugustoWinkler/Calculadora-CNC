@@ -13,7 +13,7 @@ public class SavedMaterials {
 	
 	public SavedMaterials() {
 		materials = new ArrayList<>();
-		Material novoMaterial =  new Material("Teste", 50);
+		Material novoMaterial =  new Material("MDF", 70);
 		materials.add(novoMaterial);
 
 	}

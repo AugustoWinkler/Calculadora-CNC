@@ -11,7 +11,7 @@ public class SavedMachines {
 	
 	public SavedMachines() {
 		machines = new ArrayList<>();
-		Machine mDefault = new Machine("Default",0,0,0,0,0);
+		Machine mDefault = new Machine("Máquina Padrão",2500,10,0,1500,10000);
 		machines.add(mDefault);
 		
 	}

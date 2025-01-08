@@ -38,6 +38,15 @@ public class Machine {
 	}
 
 	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Machine [name=" + name + ", value=" + value + ", usefulLife=" + usefulLife + ", residualValue="
+				+ residualValue + ", laserValue=" + laserValue + ", laserUsefulLife=" + laserUsefulLife + "]";
+	}
+
 	//getters and setters
 	public String getName() {
 		return name;

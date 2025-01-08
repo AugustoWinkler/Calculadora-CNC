@@ -35,7 +35,15 @@ public class Operacional {
 		
 	}
 	
-    //getters and setters
+	
+	
+	
+    @Override
+	public String toString() {
+		return "Operacional [desc=" + desc + ", days=" + days + ", hoursPerDay=" + hoursPerDay + ", operacionalCost="
+				+ operacionalCost + ", operatorValue=" + operatorValue + "]";
+	}
+	//getters and setters
 	public String getDesc() {
 		return desc;
 	}

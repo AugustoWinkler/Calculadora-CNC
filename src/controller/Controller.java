@@ -36,6 +36,8 @@ public class Controller {
 		updateMachineCombo();
 		updateMaterialCombo();
 		updateOperacionalCombo();
+		
+		
 
 	}
 
@@ -44,18 +46,21 @@ public class Controller {
 		machineCombo.getItems().clear();
 		for (Machine machine : SavedMachines.getInstance().getMachines()) {
 			machineCombo.getItems().add(machine.getName());
+			machineCombo.setValue(machine.getName());
 		}
 	}
 	public void updateMaterialCombo() {
 		materialCombo.getItems().clear();
 		for (Material material : SavedMaterials.getInstance().getMaterial()) {
 			materialCombo.getItems().add(material.getName());
+			materialCombo.setValue(material.getName());
 		}
 	}
 	public void updateOperacionalCombo() {
 		operacinalCombo.getItems().clear();
 		for (Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
 			operacinalCombo.getItems().add(operacional.getDesc());
+			operacinalCombo.setValue(operacional.getDesc());
 		}
 	}
 
@@ -93,5 +98,13 @@ public class Controller {
 		} else {
 			System.out.println("Operacinal InputController está nulo!");
 		}
+	}
+	
+	
+	@FXML
+	private void findMachine(ActionEvent event) {
+		calcular.findMachine(machineCombo.getValue());
+		calcular.findMaterial(materialCombo.getValue());
+		calcular.findOperacional(operacinalCombo.getValue());
 	}
 }

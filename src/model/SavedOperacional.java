@@ -13,7 +13,7 @@ public class SavedOperacional {
 	
 	public SavedOperacional() {
 		operacional = new ArrayList<>();
-		Operacional novoOperacional =  new Operacional("12x24", 50 , 50 ,50 ,50);
+		Operacional novoOperacional =  new Operacional("12x24", 24 , 12 ,500 ,1200);
 		operacional.add(novoOperacional);
 
 	}
