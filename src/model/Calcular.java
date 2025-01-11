@@ -5,6 +5,8 @@ import javafx.scene.control.TextField;
 public class Calcular {
 	
 	
+
+	
 	
 	public Machine findMachine(String name) {
 		for(Machine machine : SavedMachines.getInstance().getMachines()) {
@@ -34,7 +36,10 @@ public class Calcular {
 		return null;
 	}
 	
-	
+	public Double calcTeste(double valor) {
+		
+		return valor + 1;
+	}
 	
 	public Double calcTotal(
 			TextField valorMaquinaTf,

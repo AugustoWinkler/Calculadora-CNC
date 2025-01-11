@@ -1,4 +1,4 @@
-module teste {
+module Novo {
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires javafx.base;

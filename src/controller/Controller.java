@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import model.Calcular;
 import model.Machine;
 import model.Material;
@@ -21,6 +22,8 @@ public class Controller {
 	private ComboBox<String> materialCombo;
 	@FXML
 	private ComboBox<String> operacinalCombo;
+	@FXML
+	private Label horaMaquinaValor;
 
 	private Calcular calcular;
 	private OpenTabs openTabs;
@@ -102,9 +105,13 @@ public class Controller {
 	
 	
 	@FXML
-	private void findMachine(ActionEvent event) {
-		calcular.findMachine(machineCombo.getValue());
-		calcular.findMaterial(materialCombo.getValue());
-		calcular.findOperacional(operacinalCombo.getValue());
+	private void Calc(ActionEvent event) {
+		Machine machine = calcular.findMachine(machineCombo.getValue());
+		Material material = calcular.findMaterial(materialCombo.getValue());
+		Operacional operacional = calcular.findOperacional(operacinalCombo.getValue());
+		double horaMaquina = calcular.calcTeste(machine.getValue());
+		horaMaquinaValor.setText(Double.toString(horaMaquina));
+		
 	}
+	
 }
