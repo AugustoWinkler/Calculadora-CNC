@@ -10,7 +10,7 @@ public class Calcular {
 	
 	public Machine findMachine(String name) {
 		for(Machine machine : SavedMachines.getInstance().getMachines()) {
-			if(machine.getName() == name) {
+			if(machine.getName().equals(name)) {
 				System.out.println(machine.toString());
 				return machine;
 			}
@@ -19,7 +19,7 @@ public class Calcular {
 	}
 	public Material findMaterial(String name) {
 		for(Material material : SavedMaterials.getInstance().getMaterial()) {
-			if(material.getName() == name) {
+			if(material.getName().equals(name)) {
 				System.out.println(material.toString());
 				return material;
 			}
@@ -28,7 +28,7 @@ public class Calcular {
 	}
 	public Operacional findOperacional(String name) {
 		for(Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
-			if(operacional.getDesc() == name) {
+			if(operacional.getDesc().equals(name)) {
 				System.out.println(operacional.toString());
 				return operacional;
 			}
@@ -36,69 +36,52 @@ public class Calcular {
 		return null;
 	}
 	
-	public Double calcTeste(double valor) {
-		
-		return valor + 1;
-	}
 	
 	public Double calcTotal(
-			TextField valorMaquinaTf,
-			TextField valorResidualTf,
-			TextField vidaUtilTf,
-			TextField valorLaserTf,
-			TextField vidaUtilLaserTf,
-			TextField horasTrabalhoTf,
-			TextField diasTrabalhoTf,
-			TextField salarioOperadorTf,
-			TextField despezasTf) {
+			double machineValue,
+			double residualValue,
+			double usefulLife,
+			double laserValue,
+			double laserUsefulLife,
+			double hoursWork,
+			double daysWork,
+			double operatorSalary,
+			double expenses) {
 		
 
 		
-		double maquina = (this.calcDepreciacaoMaquina(valorMaquinaTf, valorResidualTf, vidaUtilTf) / 12) / this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
-		double laser = this.calcDepreciacaoLaser(valorLaserTf, vidaUtilLaserTf);
-		double trabalho =this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
-		double salario = this.calcSalarioOperadorEDespezas(salarioOperadorTf, despezasTf)/this.calcHorasTrabalho(horasTrabalhoTf, diasTrabalhoTf);
+		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife) / 12) / this.calcHoursOfWork(hoursWork, daysWork);
+		double laser = this.calcDepreciacaoLaser(laserValue, laserUsefulLife);
+		double salario = this.calcOperatorSalaryAndExpenses(operatorSalary, expenses)/this.calcHoursOfWork(hoursWork, daysWork);
 		
-		System.out.println(maquina+laser+salario);
 		return maquina + laser + salario;
 	}
 	
 	
 	
-	public Double calcDepreciacaoMaquina(TextField valorMaquinaTf, TextField valorResidualTf, TextField vidaUtilTf) {
-		double valorMaquina = Double.parseDouble(valorMaquinaTf.getText());
-		double valorResidual = Double.parseDouble(valorResidualTf.getText());
-		double vidaUtil = Double.parseDouble(vidaUtilTf.getText());
-		
-		double valor = (valorMaquina - valorResidual) / vidaUtil;
-		
-		
-		System.out.println("calcDepreciacaoMaquina" + valor);
-		return valor;
+	public Double calcDepreciacaoMaquina(double machineValue, double residualValue , double usefulLife) {
+	
+		return (machineValue - residualValue) / usefulLife;
 	}
 	
-	public Double calcDepreciacaoLaser(TextField valorLaserTf, TextField vidaUtilLaserTf) {
-		double valorLaser = Double.parseDouble(valorLaserTf.getText());
-		double vidaUtil = Double.parseDouble(vidaUtilLaserTf.getText());
+	public Double calcDepreciacaoLaser(double laserValue, double laserUsefulLife) {
 		
-		System.out.println("calcDepreciacaolaser" + (valorLaser/vidaUtil));
-		return valorLaser/vidaUtil;
+		return laserValue/laserUsefulLife;
 	}
 	
-	public Double calcHorasTrabalho(TextField horasTrabalhoTf, TextField diasTrabalhoTf) {
-		double horasTrabalho = Double.parseDouble(horasTrabalhoTf.getText());
-		double diasTrabalho = Double.parseDouble(diasTrabalhoTf.getText());
+	public Double calcHoursOfWork(double hoursWork, double daysWork) {
 		
-		System.out.println("calcHorasTrabalho" + (horasTrabalho*diasTrabalho));
-		return horasTrabalho * diasTrabalho;
+		
+		return hoursWork * daysWork;
 	}
 	
-	public double calcSalarioOperadorEDespezas(TextField salarioOperadorTf,TextField despezasTf) {
-		double salarioOperador = Double.parseDouble(salarioOperadorTf.getText());
-		double despezas = Double.parseDouble(despezasTf.getText());
+	public double calcOperatorSalaryAndExpenses(double operatorSalary,double expenses) {
 		
-		System.out.println("salarioOperador" + (salarioOperador + despezas));
-		return salarioOperador + despezas;
+		return operatorSalary + expenses;
+	}
+	
+	public double calcMaterial(double heigth, double width, Material material ) {
+		return ((heigth/1000) * (width /1000)) * material.getValue();
 	}
 
 }

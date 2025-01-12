@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.Calcular;
 import model.Machine;
 import model.Material;
@@ -23,7 +24,26 @@ public class Controller {
 	@FXML
 	private ComboBox<String> operacinalCombo;
 	@FXML
-	private Label horaMaquinaValor;
+	private Label hourMachinePrice;
+	@FXML
+	private Label minuteMachinePrice;
+	@FXML
+	private Label materialCost;
+	@FXML
+	private Label productionValue;
+	@FXML
+	private Label estimatedProfit;
+	@FXML
+	private Label totalValue;
+	
+	@FXML
+	private TextField materialHeigth;
+	@FXML
+	private TextField materialWidth;
+	@FXML
+	private TextField hoursProduction;
+	@FXML
+	private TextField profit;
 
 	private Calcular calcular;
 	private OpenTabs openTabs;
@@ -109,9 +129,28 @@ public class Controller {
 		Machine machine = calcular.findMachine(machineCombo.getValue());
 		Material material = calcular.findMaterial(materialCombo.getValue());
 		Operacional operacional = calcular.findOperacional(operacinalCombo.getValue());
-		double horaMaquina = calcular.calcTeste(machine.getValue());
-		horaMaquinaValor.setText(Double.toString(horaMaquina));
-		
+		double machineHour = calcular.calcTotal(
+				machine.getValue(), 
+				machine.getResidualValue(), 
+				machine.getUsefulLife(), 
+				machine.getLaserValue(),
+				machine.getLaserUsefulLife(),
+				operacional.getHoursPerDay(), 
+				operacional.getDays(), 
+				operacional.getOperatorValue(), 
+				operacional.getOperacionalCost());
+		hourMachinePrice.setText(String.format("%.2f R$", machineHour));
+		double minuteMachine = machineHour/60;
+		minuteMachinePrice.setText(String.format("%.2f R$", minuteMachine));
+		double materialCostVar = calcular.calcMaterial(Double.parseDouble(materialHeigth.getText()), 
+				Double.parseDouble(materialWidth.getText()), material);
+		materialCost.setText(String.format("%.2f R$", materialCostVar));
+		double productionValueCost = (machineHour * Double.parseDouble(hoursProduction.getText()) + materialCostVar);
+		productionValue.setText(String.format("%.2f R$", productionValueCost));
+		double estimatedProfitValue = (productionValueCost * Double.parseDouble(profit.getText())/100);
+		estimatedProfit.setText(String.format("%.2f R$", estimatedProfitValue));
+		double totalValueVar = productionValueCost + estimatedProfitValue;
+		totalValue.setText(String.format("%.2f R$", totalValueVar));
 	}
 	
 }
