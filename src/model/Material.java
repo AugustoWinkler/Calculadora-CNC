@@ -1,33 +1,24 @@
 package model;
 
-import javafx.scene.control.TextField;
+
 
 public class Material {
 	private String name;
 	private double price;
 
-	
-	
-	public Material (TextField name, 
-					TextField price) {
-		
-		this.name = name.getText();;
-		this.price = Double.parseDouble(price.getText());
-	}
+
+
 	public Material(String name, double price) {
-		super();
-		this.name =  name;
+		this.name = name;
 		this.price = price;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Material [name=" + name + ", price=" + price + "]";
 	}
-	
-	//getters and setters
+
+	// getters and setters
 	public String getName() {
 		return name;
 	}
@@ -44,8 +35,4 @@ public class Material {
 		this.price = value;
 	}
 
-
-	
-
-	
 }
