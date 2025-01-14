@@ -26,7 +26,7 @@
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar novas máquinas" />
                </tooltip></Button>
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover">
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeMachine" text="Remover">
                <tooltip>
                   <Tooltip text="Aqui você pode excluir uma máquina criada Obs: A Máquina Padrão não pode ser excluida" />
                </tooltip></Button>
@@ -47,7 +47,7 @@
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar um novo material" />
                </tooltip></Button>
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover">
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeMaterial" text="Remover">
                <tooltip>
                   <Tooltip text="Aqui você pode remover um material Obs(O material Nenhum não pode ser removido)" />
                </tooltip></Button>
@@ -60,7 +60,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="operacinalCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
+            <ComboBox fx:id="operacionalCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar um modelo Operacional (é essencial para o calculo)" />
                </tooltip></ComboBox>
@@ -68,7 +68,7 @@
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar um modelo Operacional" />
                </tooltip></Button>
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover">
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeOperacional" text="Remover">
                <tooltip>
                   <Tooltip text="Aqui você pode remover um Modelo Operacional (O valor padrão não pode ser removido)" />
                </tooltip></Button>
@@ -82,7 +82,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="profit" layoutX="167.0" layoutY="122.0" prefHeight="25.0" prefWidth="96.0" promptText="0" />
+            <TextField fx:id="profit" layoutX="167.0" layoutY="122.0" prefHeight="25.0" prefWidth="96.0" promptText="\%" text="0" />
             <Label layoutX="12.0" layoutY="122.0" text="Lucro desejado:">
                <font>
                   <Font size="16.0" />
@@ -103,7 +103,7 @@
                </font>
             </Label>
             <TextField fx:id="materialWidth" layoutX="167.0" layoutY="89.0" prefHeight="25.0" prefWidth="96.0" promptText="milimetros" />
-            <Label layoutX="12.0" layoutY="89.0" text="Largura::">
+            <Label layoutX="12.0" layoutY="89.0" text="Largura:">
                <font>
                   <Font size="16.0" />
                </font>

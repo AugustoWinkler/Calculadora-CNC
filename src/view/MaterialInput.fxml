@@ -13,7 +13,7 @@
         </font>
     </Label>
     <TextField fx:id="txtMaterialName" alignment="CENTER" promptText="Nome Material" />
-    <TextField fx:id="txtPriceMaterial" alignment="CENTER" promptText="Preço" />
+    <TextField fx:id="txtPriceMaterial" alignment="CENTER" promptText="Preço m²" />
     <Button onAction="#addMaterial" prefHeight="26.0" prefWidth="145.0" text="Salvar">
         <font>
             <Font size="18.0" />

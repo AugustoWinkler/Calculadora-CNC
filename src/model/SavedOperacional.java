@@ -3,17 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class SavedOperacional {
 	private static SavedOperacional instance;
 	private ArrayList<Operacional> operacional = new ArrayList<>();
 
-	
-	
 	public SavedOperacional() {
 		operacional = new ArrayList<>();
-		Operacional novoOperacional =  new Operacional("12x24", 24 , 12 ,500 ,1200);
+		Operacional novoOperacional = new Operacional("(Padrão)", 30, 24, 0, 0);
 		operacional.add(novoOperacional);
 
 	}
@@ -27,6 +23,10 @@ public class SavedOperacional {
 
 	public void addOperacional(Operacional operacional) {
 		this.operacional.add(operacional);
+	}
+
+	public void removeOperacional(Operacional operacional) {
+		this.operacional.remove(operacional);
 	}
 
 	public List<Operacional> getOperacional() {
