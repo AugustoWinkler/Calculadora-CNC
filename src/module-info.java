@@ -1,9 +1,10 @@
-module Novo {
+module LaserCalc {
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires javafx.base;
 	requires javafx.graphics;
+	requires java.sql;
 	
-	opens model to javafx.graphics, javafx.fxml;
+	opens application to javafx.graphics, javafx.fxml;
 	opens controller to javafx.fxml;
 }

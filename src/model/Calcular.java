@@ -2,56 +2,18 @@ package model;
 
 public class Calcular {
 
-	public Machine findMachine(String name) {
-		for (Machine machine : SavedMachines.getInstance().getMachines()) {
-			if (machine.getName().equals(name)) {
-				System.out.println(machine.toString());
-				return machine;
-			}
-		}
-		return null;
-	}
-
-	public Material findMaterial(String name) {
-		for (Material material : SavedMaterials.getInstance().getMaterial()) {
-			if (material.getName().equals(name)) {
-				System.out.println(material.toString());
-				return material;
-			}
-		}
-		return null;
-	}
-
-	public Operacional findOperacional(String name) {
-		for (Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
-			if (operacional.getDesc().equals(name)) {
-				System.out.println(operacional.toString());
-				return operacional;
-			}
-		}
-		return null;
-	}
-
-	public Double calcTotal(double machineValue, double residualValue, double usefulLife, double hoursWork,
-			double daysWork, double operatorSalary, double expenses) {
-
-		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife) / 12)
-				/ this.calcHoursOfWork(hoursWork, daysWork);
-		double salario = this.calcOperatorSalaryAndExpenses(operatorSalary, expenses)
-				/ this.calcHoursOfWork(hoursWork, daysWork);
-
-		return maquina + salario;
-	}
 
 	public Double calcTotal(double machineValue, double residualValue, double usefulLife, double laserValue,
 			double laserUsefulLife, double hoursWork, double daysWork, double operatorSalary, double expenses) {
 
-		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife) / 12)
+		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife)/12)
 				/ this.calcHoursOfWork(hoursWork, daysWork);
 		double laser = this.calcDepreciacaoLaser(laserValue, laserUsefulLife);
 		double salario = this.calcOperatorSalaryAndExpenses(operatorSalary, expenses)
 				/ this.calcHoursOfWork(hoursWork, daysWork);
-
+		System.out.println(maquina);
+		System.out.println(laser);
+		System.out.println(salario);
 		return maquina + laser + salario;
 	}
 
@@ -61,22 +23,26 @@ public class Calcular {
 	}
 
 	public Double calcDepreciacaoLaser(double laserValue, double laserUsefulLife) {
-
+		if(laserValue <= 0 || laserUsefulLife <= 0) {
+			System.out.println("Laser Nulo");
+			return (double) 0;
+		}
+		System.out.println("calcDepreciacaoLaser" + laserValue + laserUsefulLife);
 		return laserValue / laserUsefulLife;
 	}
 
 	public Double calcHoursOfWork(double hoursWork, double daysWork) {
-
+		
 		return hoursWork * daysWork;
 	}
 
 	public double calcOperatorSalaryAndExpenses(double operatorSalary, double expenses) {
-
+		System.out.println("Calc operatorSalary" + operatorSalary + expenses );
 		return operatorSalary + expenses;
 	}
 
 	public double calcMaterial(double heigth, double width, Material material) {
-		return ((heigth / 1000) * (width / 1000)) * material.getValue();
+		return ((heigth / 1000) * (width / 1000)) * material.getPrice();
 	}
 
 }

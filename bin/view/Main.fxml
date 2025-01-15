@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -17,9 +18,18 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="machineCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addMachine" text="Adicionar" />
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover" />
+            <ComboBox fx:id="machineCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
+               <tooltip>
+                  <Tooltip text="Selecione uma máquina" />
+               </tooltip></ComboBox>
+            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addMachine" text="Adicionar">
+               <tooltip>
+                  <Tooltip text="Aqui você pode adicionar novas máquinas" />
+               </tooltip></Button>
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeMachine" text="Remover">
+               <tooltip>
+                  <Tooltip text="Aqui você pode excluir uma máquina criada Obs: A Máquina Padrão não pode ser excluida" />
+               </tooltip></Button>
          </children>
       </Pane>
       <Pane layoutX="255.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
@@ -29,9 +39,18 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="materialCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addMaterial" text="Adicionar" />
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover" />
+            <ComboBox fx:id="materialCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
+               <tooltip>
+                  <Tooltip text="Selecione seu Material (ou Selecione nenhum para que o calculo seja feito sem considerar o custo de material)" />
+               </tooltip></ComboBox>
+            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addMaterial" text="Adicionar">
+               <tooltip>
+                  <Tooltip text="Aqui você pode adicionar um novo material" />
+               </tooltip></Button>
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeMaterial" text="Remover">
+               <tooltip>
+                  <Tooltip text="Aqui você pode remover um material Obs(O material Nenhum não pode ser removido)" />
+               </tooltip></Button>
          </children>
       </Pane>
       <Pane layoutX="509.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
@@ -41,81 +60,91 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="operacinalCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0" />
-            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addOperacional" text="Adicionar" />
-            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" text="Remover" />
+            <ComboBox fx:id="operacionalCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
+               <tooltip>
+                  <Tooltip text="Aqui você pode adicionar um modelo Operacional (é essencial para o calculo)" />
+               </tooltip></ComboBox>
+            <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addOperacional" text="Adicionar">
+               <tooltip>
+                  <Tooltip text="Aqui você pode adicionar um modelo Operacional" />
+               </tooltip></Button>
+            <Button layoutX="158.0" layoutY="76.0" mnemonicParsing="false" onAction="#removeOperacional" text="Remover">
+               <tooltip>
+                  <Tooltip text="Aqui você pode remover um Modelo Operacional (O valor padrão não pode ser removido)" />
+               </tooltip></Button>
          </children>
       </Pane>
-      <Pane layoutX="2.0" layoutY="186.0" prefHeight="200.0" prefWidth="760.0" style="-fx-background-color: #1111;">
+      <Pane layoutX="2.0" layoutY="124.0" prefHeight="262.0" prefWidth="278.0" style="-fx-background-color: #1111;">
          <children>
-            <TextField layoutX="169.0" layoutY="40.0" prefHeight="25.0" prefWidth="96.0" />
-            <Label layoutX="14.0" layoutY="40.0" text="Quantidade Material:">
+            <TextField fx:id="materialHeigth" layoutX="167.0" layoutY="56.0" prefHeight="25.0" prefWidth="96.0" promptText="milimetros" />
+            <Label layoutX="12.0" layoutY="56.0" text="Altura:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="169.0" layoutY="73.0" prefHeight="25.0" prefWidth="96.0" />
-            <Label layoutX="14.0" layoutY="73.0" text="Lucro desejado:">
+            <TextField fx:id="profit" layoutX="167.0" layoutY="122.0" prefHeight="25.0" prefWidth="96.0" promptText="\%" text="0" />
+            <Label layoutX="12.0" layoutY="122.0" text="Lucro desejado:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#findMachine" prefHeight="51.0" prefWidth="254.0" text="Calcular">
+            <Button layoutX="12.0" layoutY="188.0" mnemonicParsing="false" onAction="#Calc" prefHeight="51.0" prefWidth="254.0" text="Calcular">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Após selecionar a máquina e preencher os campos você pode calcular utilizando este botão!" />
+               </tooltip>
             </Button>
-            <Label layoutX="480.0" layoutY="40.0" text="Hora Máquina:">
+            <TextField fx:id="hoursProduction" layoutX="167.0" layoutY="24.0" prefHeight="25.0" prefWidth="96.0" promptText="0" text="1" />
+            <Label layoutX="14.0" layoutY="24.0" text="Horas de produção:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="644.0" layoutY="40.0" text="0,0R$">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="480.0" layoutY="61.0" text="Minuto Máquina:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="644.0" layoutY="61.0" text="0,0R$">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="480.0" layoutY="82.0" text="Lucro Estimado:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="644.0" layoutY="82.0" text="0,0R$">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="480.0" layoutY="103.0" text="Valor Gasto:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="644.0" layoutY="103.0" text="0,0R$">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="480.0" layoutY="122.0" text="Valor Total:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="644.0" layoutY="122.0" text="0,0R$">
+            <TextField fx:id="materialWidth" layoutX="167.0" layoutY="89.0" prefHeight="25.0" prefWidth="96.0" promptText="milimetros" />
+            <Label layoutX="12.0" layoutY="89.0" text="Largura:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
          </children>
       </Pane>
+      <Label layoutX="290.0" layoutY="131.0" text="Hora Máquina:" />
+      <Label fx:id="hourMachinePrice" layoutX="454.0" layoutY="131.0" text="0,0R$" />
+      <Label layoutX="290.0" layoutY="149.0" text="Minuto Máquina:" />
+      <Label fx:id="minuteMachinePrice" layoutX="454.0" layoutY="149.0" text="0,0R$" />
+      <Label layoutX="290.0" layoutY="360.0" text="Valor total:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalValue" layoutX="454.0" layoutY="360.0" text="0,0R$">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="290.0" layoutY="167.0" text="Custo Material:" />
+      <Label fx:id="materialCost" layoutX="454.0" layoutY="167.0" text="0,0R$" />
+      <Label layoutX="290.0" layoutY="334.0" text="Lucro estimado:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="estimatedProfit" layoutX="454.0" layoutY="334.0" text="0,0R$">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="290.0" layoutY="308.0" text="Valor produção:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="productionValue" layoutX="454.0" layoutY="308.0" text="0,0R$">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

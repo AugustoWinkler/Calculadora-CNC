@@ -4,8 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.AlertHelper;
-import model.Material;
-import model.SavedMaterials;
+import model.MaterialDAO;
 import model.validateTextField;
 
 public class MaterialInputController {
@@ -33,20 +32,12 @@ public class MaterialInputController {
 			return;
 		}
 
-		for (Material material : SavedMaterials.getInstance().getMaterial()) {
-			if (name.equals(material.getName())) {
-				AlertHelper.showAlert("Falha ao adicionar material", "Nome já existente",
-						"O nome informado já está em uso. Escolha um nome diferente.");
-				return;
-			}
-		}
-
 		try {
 			double price = Double.parseDouble(txtPriceMaterial.getText());
 
-			Material newMaterial = new Material(name, price);
-			SavedMaterials.getInstance().addMaterial(newMaterial);
-			System.out.println("Material adicionado: " + newMaterial.getName());
+			MaterialDAO.insertMaterial(name, price);
+			
+			System.out.println("Material Adicionado");
 
 			if (mainController != null) {
 				mainController.updateMaterialCombo();

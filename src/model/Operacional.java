@@ -1,11 +1,23 @@
 package model;
 
 public class Operacional {
+	private int id;
 	private String desc;
 	private double days;
 	private double hoursPerDay;
 	private double operacionalCost;
 	private double operatorValue;
+	
+	
+	public Operacional(int id, String desc, double days, double hoursPerDay, double operacionalCost, double operatorValue) {
+		this.id = id;
+		this.desc = desc;
+		this.days = days;
+		this.hoursPerDay = hoursPerDay;
+		this.operacionalCost = operacionalCost;
+		this.operatorValue = operatorValue;
+
+	}
 
 	public Operacional(String desc, double days, double hoursPerDay, double operacionalCost, double operatorValue) {
 		this.desc = desc;
@@ -23,8 +35,19 @@ public class Operacional {
 	}
 
 	// getters and setters
+	
+	
+	
 	public String getDesc() {
 		return desc;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setDesc(String desc) {
