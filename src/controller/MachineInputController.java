@@ -4,8 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.AlertHelper;
-import model.Machine;
-import model.SavedMachines;
+import model.MachineDAO;
 import model.validateTextField;
 
 public class MachineInputController {
@@ -46,14 +45,6 @@ public class MachineInputController {
 			return;
 		}
 
-		for (Machine machine : SavedMachines.getInstance().getMachines()) {
-			if (name.equals(machine.getName())) {
-				AlertHelper.showAlert("Falha ao adicionar máquina", "Nome já existente",
-						"O nome informado já está em uso. Escolha um nome diferente.");
-				return;
-			}
-		}
-
 		try {
 
 			double value = Double.parseDouble(txtValueMachine.getText());
@@ -62,10 +53,9 @@ public class MachineInputController {
 			double laserValue = Double.parseDouble(txtLaserValue.getText());
 			double laserUsefulLife = Double.parseDouble(txtLaserUsefulLife.getText());
 
+			MachineDAO.insertMachine(name, value, usefulLife, residualValue, laserValue, laserUsefulLife);
 
-			Machine newMachine = new Machine(name, value, usefulLife, residualValue, laserValue, laserUsefulLife);
-			SavedMachines.getInstance().addMachine(newMachine);
-			System.out.println("Máquina adicionada: " + newMachine.getName());
+			System.out.println("Máquina adicionada: ");
 
 			if (mainController != null) {
 				mainController.updateMachineCombo();

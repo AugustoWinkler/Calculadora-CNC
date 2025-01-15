@@ -4,8 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import model.AlertHelper;
-import model.Operacional;
-import model.SavedOperacional;
+import model.OperacionalDAO;
 import model.validateTextField;
 
 public class OperacionalInputController {
@@ -41,13 +40,6 @@ public class OperacionalInputController {
 			return;
 		}
 
-		for (Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
-			if (name.equals(operacional.getDesc())) {
-				AlertHelper.showAlert("Falha ao adicionar operacional", "Nome já existente",
-						"O nome informado já está em uso. Escolha um nome diferente.");
-				return;
-			}
-		}
 
 		try {
 			double daysOfWork = Double.parseDouble(txtDaysOfWork.getText());
@@ -55,10 +47,8 @@ public class OperacionalInputController {
 			double operacionalCosts = Double.parseDouble(txtOperacionalCosts.getText());
 			double operatorValue = Double.parseDouble(txtOperatorValue.getText());
 
-			Operacional newOperacional = new Operacional(name, daysOfWork, hoursPerDay, operacionalCosts,
-					operatorValue);
-			SavedOperacional.getInstance().addOperacional(newOperacional);
-			System.out.println("Material adicionado: " + newOperacional.getDesc());
+			OperacionalDAO.insertOperacional(name, daysOfWork, hoursPerDay, operacionalCosts, operatorValue);
+			System.out.println("Material adicionado: ");
 
 		} catch (NumberFormatException ex) {
 			AlertHelper.showAlert("Falha ao adicionar operacional", "Valores inválidos",

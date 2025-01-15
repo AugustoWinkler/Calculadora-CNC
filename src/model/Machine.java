@@ -1,13 +1,15 @@
 package model;
 
 public class Machine {
+	private int id;
 	private String name;
 	private double value;
 	private double usefulLife;
 	private double residualValue;
 	private double laserValue;
 	private double laserUsefulLife;
-
+	
+	
 	public Machine(String name, double value, double usefulLife, double residualValue, double laserValue,
 			double laserUsefulLife) {
 		this.name = name;
@@ -18,13 +20,36 @@ public class Machine {
 		this.laserUsefulLife = laserUsefulLife;
 	}
 
-	@Override
-	public String toString() {
-		return "Machine [name=" + name + ", value=" + value + ", usefulLife=" + usefulLife + ", residualValue="
-				+ residualValue + ", laserValue=" + laserValue + ", laserUsefulLife=" + laserUsefulLife + "]";
+	public Machine(int id, String name, double value, double usefulLife, double residualValue, double laserValue, double laserUsefulLife) {
+	    this.id = id;
+	    this.name = name;
+	    this.value = value;
+	    this.usefulLife = usefulLife;
+	    this.residualValue = residualValue;
+	    this.laserValue = laserValue;
+	    this.laserUsefulLife = laserUsefulLife;
 	}
 
+	
+	
+	
 	// getters and setters
+
+	@Override
+	public String toString() {
+		return "Machine [id=" + id + ", name=" + name + ", value=" + value + ", usefulLife=" + usefulLife
+				+ ", residualValue=" + residualValue + ", laserValue=" + laserValue + ", laserUsefulLife="
+				+ laserUsefulLife + "]";
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,13 +11,14 @@ import javafx.scene.control.TextField;
 import model.AlertHelper;
 import model.Calcular;
 import model.ConfirmationHelper;
+import model.DataBaseConnection;
 import model.Machine;
+import model.MachineDAO;
 import model.Material;
+import model.MaterialDAO;
 import model.OpenTabs;
 import model.Operacional;
-import model.SavedMachines;
-import model.SavedMaterials;
-import model.SavedOperacional;
+import model.OperacionalDAO;
 import model.validateTextField;
 
 public class Controller {
@@ -74,25 +76,29 @@ public class Controller {
 
 	public void updateMachineCombo() {
 		machineCombo.getItems().clear();
-		for (Machine machine : SavedMachines.getInstance().getMachines()) {
+		List<Machine> machines = new MachineDAO(DataBaseConnection.connect()).getAllMachines();
+
+		for (Machine machine : machines) {
 			machineCombo.getItems().add(machine.getName());
-			machineCombo.setValue(machine.getName());
 		}
 	}
 
 	public void updateMaterialCombo() {
 		materialCombo.getItems().clear();
-		for (Material material : SavedMaterials.getInstance().getMaterial()) {
+
+		List<Material> materials = new MaterialDAO(DataBaseConnection.connect()).getAllMaterials();
+		for (Material material : materials) {
 			materialCombo.getItems().add(material.getName());
-			materialCombo.setValue(material.getName());
 		}
+
 	}
 
 	public void updateOperacionalCombo() {
 		operacionalCombo.getItems().clear();
-		for (Operacional operacional : SavedOperacional.getInstance().getOperacional()) {
+		List<Operacional> operacionals = new OperacionalDAO(DataBaseConnection.connect()).getAllOperacionals();
+
+		for (Operacional operacional : operacionals) {
 			operacionalCombo.getItems().add(operacional.getDesc());
-			operacionalCombo.setValue(operacional.getDesc());
 		}
 	}
 
@@ -110,21 +116,12 @@ public class Controller {
 
 	@FXML
 	private void removeMachine(ActionEvent event) {
-		if (machineCombo.getValue() != "(Nenhum)") {
-			boolean confirmed = ConfirmationHelper.showConfirmation("Confirmação de Exclusão",
-					"Deseja realmente excluir esta maquina?", "Esta ação não pode ser desfeita.");
-
-			if (confirmed) {
-				Machine machine = calcular.findMachine(machineCombo.getValue());
-				SavedMachines.getInstance().removeMachine(machine);
-				this.updateMachineCombo();
-			}
-
-		} else {
-			AlertHelper.showAlert("Erro ao Remover Maquina", "Não foi possível remover está máquina",
-					"Reinicie a aplicação e tente novamente, se o problema persistir contatar o suporte.");
+		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Máquina", "essa ação não poderá ser desfeita.",
+				"Tem certeza que deseja remover esta máquina?");
+		if (confirmed) {
+			MachineDAO.removeMachine(machineCombo.getValue());
+			this.updateMachineCombo();
 		}
-
 	}
 
 	@FXML
@@ -141,19 +138,11 @@ public class Controller {
 
 	@FXML
 	private void removeMaterial(ActionEvent event) {
-		if (materialCombo.getValue() != "(Nenhum)") {
-			boolean confirmed = ConfirmationHelper.showConfirmation("Confirmação de Exclusão",
-					"Deseja realmente excluir este material?", "Esta ação não pode ser desfeita.");
-
-			if (confirmed) {
-				Material material = calcular.findMaterial(materialCombo.getValue());
-				SavedMaterials.getInstance().removeMaterial(material);
-				;
-				this.updateMaterialCombo();
-			}
-		} else {
-			AlertHelper.showAlert("Erro ao remover Material", "Não foi possivel remover este material",
-					"Reinicie a aplicação se o erro persistir contatar o suporte.");
+		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Material", "essa ação não poderá ser desfeita",
+				"Tem certeza de que deseja remover esta máquina?");
+		if (confirmed) {
+			MaterialDAO.removeMaterial(materialCombo.getValue());
+			this.updateMaterialCombo();
 		}
 	}
 
@@ -171,44 +160,31 @@ public class Controller {
 
 	@FXML
 	private void removeOperacional(ActionEvent envet) {
-		if (operacionalCombo.getValue() != "(Padrão)") {
-			boolean confirmed = ConfirmationHelper.showConfirmation("Confirmação de Exclusão",
-					"Deseja realmente excluir este operacional?", "Esta ação não pode ser desfeita.");
-
-			if (confirmed) {
-				Operacional operacional = calcular.findOperacional(operacionalCombo.getValue());
-				SavedOperacional.getInstance().removeOperacional(operacional);
-				this.updateOperacionalCombo();
-			}
-
-		} else {
-			AlertHelper.showAlert("Erro ao remover Operacional", "Não foi possível remover esse Operacinal",
-					"Reinicie a aplicação e tente novamente se o erro persistir contatar o suporte.");
+		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Operacional",
+				"essa ação não poderá ser desfeita", "Tem certeza de que deseja remover este operacional?");
+		if (confirmed) {
+			OperacionalDAO.removeOperacional(operacionalCombo.getValue());
+			this.updateOperacionalCombo();
 		}
 	}
 
 	@FXML
 	private void Calc(ActionEvent event) {
-		double machineHour;
-		double minuteMachine;
+		double machineHour = 0;
+		double minuteMachine = 0;
 		double materialCostVar;
 		double productionValueCost;
 		double estimatedProfitValue;
 		double total;
 
-		Machine machine = calcular.findMachine(machineCombo.getValue());
-		Material material = calcular.findMaterial(materialCombo.getValue());
-		Operacional operacional = calcular.findOperacional(operacionalCombo.getValue());
+		Machine machine = MachineDAO.findMachine(machineCombo.getValue());
+		Material material = MaterialDAO.findMaterial(materialCombo.getValue());
+		Operacional operacional = OperacionalDAO.findOperacional(operacionalCombo.getValue());
 
+		System.out.println(machine.toString());
 		if (machine.getName().equals("(Nenhum)")) {
-			machineHour = 0;
-			minuteMachine = 0;
-		} else if (machine.getLaserValue() <= 0 || machine.getLaserUsefulLife() <= 0) {
-			machineHour = calcular.calcTotal(machine.getValue(), machine.getResidualValue(), machine.getUsefulLife(),
-					operacional.getHoursPerDay(), operacional.getDays(), operacional.getOperatorValue(),
-					operacional.getOperacionalCost());
-
-			minuteMachine = machineHour / 60;
+			AlertHelper.showAlert("Nenhuma máquina selecionada", "Você precisa selecionar uma máquina",
+					"caso não exista nenhuma máquina você pode criar uma apertando no botão adicionar");
 		} else {
 			machineHour = calcular.calcTotal(machine.getValue(), machine.getResidualValue(), machine.getUsefulLife(),
 					machine.getLaserValue(), machine.getLaserUsefulLife(), operacional.getHoursPerDay(),
