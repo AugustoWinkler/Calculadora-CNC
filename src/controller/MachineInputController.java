@@ -55,12 +55,10 @@ public class MachineInputController {
 
 			MachineDAO.insertMachine(name, value, usefulLife, residualValue, laserValue, laserUsefulLife);
 
-			System.out.println("Máquina adicionada: ");
-
 			if (mainController != null) {
 				mainController.updateMachineCombo();
 			} else {
-				System.out.println("mainController está nulo!");
+				return;
 			}
 		} catch (NumberFormatException ex) {
 			AlertHelper.showAlert("Falha ao adicionar máquina", "Valores inválidos",

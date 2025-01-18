@@ -109,8 +109,6 @@ public class Controller {
 
 		if (machineInputController != null) {
 			machineInputController.setMainController(this);
-		} else {
-			System.out.println("MachineInputController está nulo!");
 		}
 	}
 
@@ -131,8 +129,6 @@ public class Controller {
 
 		if (materialInputController != null) {
 			materialInputController.setMainController(this);
-		} else {
-			System.out.println("MaterialInputController está nulo!");
 		}
 	}
 
@@ -153,8 +149,6 @@ public class Controller {
 
 		if (operacionalInputController != null) {
 			operacionalInputController.setMainController(this);
-		} else {
-			System.out.println("Operacinal InputController está nulo!");
 		}
 	}
 
