@@ -30,9 +30,7 @@ public class MachineDAO {
 			pstmt.setDouble(5, laserValue);
 			pstmt.setDouble(6, laserUsefulLife);
 			pstmt.executeUpdate();
-			System.out.println("Máquina inserida com sucesso!");
 		} catch (Exception e) {
-			System.out.println("Erro ao inserir máquina: " + e.getMessage());
 		}
 	}
 
@@ -47,12 +45,9 @@ public class MachineDAO {
 			int rowsAffected = pstmt.executeUpdate();
 
 			if (rowsAffected > 0) {
-				System.out.println("Máquina removida com sucesso!");
 			} else {
-				System.out.println("Nenhuma máquina encontrada com esse nome.");
 			}
 		} catch (Exception e) {
-			System.out.println("Erro ao remover máquina: " + e.getMessage());
 		}
 	}
 
@@ -79,7 +74,6 @@ public class MachineDAO {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Erro ao listar máquinas: " + e.getMessage());
 		}
 		return null;
 	}

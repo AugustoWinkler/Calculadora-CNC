@@ -40,7 +40,6 @@ public class OperacionalInputController {
 			return;
 		}
 
-
 		try {
 			double daysOfWork = Double.parseDouble(txtDaysOfWork.getText());
 			double hoursPerDay = Double.parseDouble(txtHoursPerDay.getText());
@@ -48,7 +47,6 @@ public class OperacionalInputController {
 			double operatorValue = Double.parseDouble(txtOperatorValue.getText());
 
 			OperacionalDAO.insertOperacional(name, daysOfWork, hoursPerDay, operacionalCosts, operatorValue);
-			System.out.println("Material adicionado: ");
 
 		} catch (NumberFormatException ex) {
 			AlertHelper.showAlert("Falha ao adicionar operacional", "Valores inválidos",
@@ -58,7 +56,7 @@ public class OperacionalInputController {
 		if (mainController != null) {
 			mainController.updateOperacionalCombo();
 		} else {
-			System.out.println("mainController está nulo!");
+			return;
 		}
 	}
 

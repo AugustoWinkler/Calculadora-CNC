@@ -2,11 +2,10 @@ package model;
 
 public class Calcular {
 
-
 	public Double calcTotal(double machineValue, double residualValue, double usefulLife, double laserValue,
 			double laserUsefulLife, double hoursWork, double daysWork, double operatorSalary, double expenses) {
 
-		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife)/12)
+		double maquina = (this.calcDepreciacaoMaquina(machineValue, residualValue, usefulLife) / 12)
 				/ this.calcHoursOfWork(hoursWork, daysWork);
 		double laser = this.calcDepreciacaoLaser(laserValue, laserUsefulLife);
 		double salario = this.calcOperatorSalaryAndExpenses(operatorSalary, expenses)
@@ -23,21 +22,18 @@ public class Calcular {
 	}
 
 	public Double calcDepreciacaoLaser(double laserValue, double laserUsefulLife) {
-		if(laserValue <= 0 || laserUsefulLife <= 0) {
-			System.out.println("Laser Nulo");
+		if (laserValue <= 0 || laserUsefulLife <= 0) {
 			return (double) 0;
 		}
-		System.out.println("calcDepreciacaoLaser" + laserValue + laserUsefulLife);
 		return laserValue / laserUsefulLife;
 	}
 
 	public Double calcHoursOfWork(double hoursWork, double daysWork) {
-		
+
 		return hoursWork * daysWork;
 	}
 
 	public double calcOperatorSalaryAndExpenses(double operatorSalary, double expenses) {
-		System.out.println("Calc operatorSalary" + operatorSalary + expenses );
 		return operatorSalary + expenses;
 	}
 

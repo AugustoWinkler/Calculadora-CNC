@@ -35,12 +35,7 @@ public class Machine {
 	
 	// getters and setters
 
-	@Override
-	public String toString() {
-		return "Machine [id=" + id + ", name=" + name + ", value=" + value + ", usefulLife=" + usefulLife
-				+ ", residualValue=" + residualValue + ", laserValue=" + laserValue + ", laserUsefulLife="
-				+ laserUsefulLife + "]";
-	}
+
 
 	public int getId() {
 		return id;

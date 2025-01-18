@@ -36,18 +36,16 @@ public class MaterialInputController {
 			double price = Double.parseDouble(txtPriceMaterial.getText());
 
 			MaterialDAO.insertMaterial(name, price);
-			
-			System.out.println("Material Adicionado");
 
 			if (mainController != null) {
 				mainController.updateMaterialCombo();
 			} else {
-				System.out.println("mainController está nulo!");
+				return;
 			}
 		} catch (NumberFormatException ex) {
 			AlertHelper.showAlert("Falha ao adicionar material", "Valores inválidos",
 					"Certifique-se de que todos os campos numéricos possuem valores válidos.");
-		
+
 		}
 
 	}
