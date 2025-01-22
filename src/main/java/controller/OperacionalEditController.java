@@ -6,10 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.AlertHelper;
+import model.Operacional;
 import model.OperacionalDAO;
 import model.validateTextField;
 
-public class OperacionalInputController {
+public class OperacionalEditController {
 	private Controller mainController;
 	@FXML
 	private TextField txtDescOperacional;
@@ -34,21 +35,18 @@ public class OperacionalInputController {
 	}
 
 	@FXML
-	public void addOperacional(Event e) {
-		try {
-			String name = txtDescOperacional.getText();
-			if (name.isEmpty()) {
-				AlertHelper.showAlert("Falha ao adicionar operacional", "Campo nome está vazio",
-						"Por favcor, preencha o campo Nome com um valor válido.");
-				return;
-			}
+	public void editOperacional(Event e) {
 
+		try {
+
+			String oldName = mainController.getSelectedOperacional();
+			String newName = txtDescOperacional.getText();
 			double daysOfWork = Double.parseDouble(txtDaysOfWork.getText());
 			double hoursPerDay = Double.parseDouble(txtHoursPerDay.getText());
 			double operacionalCosts = Double.parseDouble(txtOperacionalCosts.getText());
 			double operatorValue = Double.parseDouble(txtOperatorValue.getText());
 
-			OperacionalDAO.insertOperacional(name, daysOfWork, hoursPerDay, operacionalCosts, operatorValue);
+			OperacionalDAO.editOperacional(oldName, newName, daysOfWork, hoursPerDay, operacionalCosts, operatorValue);
 			mainController.updateOperacionalCombo();
 
 		} catch (NumberFormatException ex) {
@@ -63,6 +61,17 @@ public class OperacionalInputController {
 
 	public void setMainController(Controller mainController) {
 		this.mainController = mainController;
+		this.showOperacional();
 	}
 
+	public void showOperacional() {
+		String selectedOperacional = mainController.getSelectedOperacional();
+		Operacional operacional = OperacionalDAO.findOperacional(selectedOperacional);
+
+		txtDescOperacional.setText(operacional.getDesc());
+		txtDaysOfWork.setText(String.valueOf(operacional.getDays()));
+		txtHoursPerDay.setText(String.valueOf(operacional.getHoursPerDay()));
+		txtOperacionalCosts.setText(String.valueOf(operacional.getOperacionalCost()));
+		txtOperatorValue.setText(String.valueOf(operacional.getOperatorValue()));
+	}
 }

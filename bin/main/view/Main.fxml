@@ -5,11 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <Pane layoutX="1.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
          <children>
@@ -18,7 +21,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="machineCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
+            <ComboBox fx:id="machineCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="155.0">
                <tooltip>
                   <Tooltip text="Selecione uma máquina" />
                </tooltip></ComboBox>
@@ -30,6 +33,15 @@
                <tooltip>
                   <Tooltip text="Aqui você pode excluir uma máquina criada Obs: A Máquina Padrão não pode ser excluida" />
                </tooltip></Button>
+            <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="188.0" layoutY="41.0" mnemonicParsing="false" onAction="#editMachine" prefHeight="25.0" prefWidth="32.0">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/SettingsImg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="255.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
@@ -39,10 +51,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="materialCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
-               <tooltip>
-                  <Tooltip text="Selecione seu Material (ou Selecione nenhum para que o calculo seja feito sem considerar o custo de material)" />
-               </tooltip></ComboBox>
             <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addMaterial" text="Adicionar">
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar um novo material" />
@@ -51,6 +59,20 @@
                <tooltip>
                   <Tooltip text="Aqui você pode remover um material Obs(O material Nenhum não pode ser removido)" />
                </tooltip></Button>
+            <ComboBox fx:id="materialCombo" layoutX="34.0" layoutY="45.0" prefHeight="25.0" prefWidth="155.0">
+               <tooltip>
+                  <Tooltip text="Selecione uma máquina" />
+               </tooltip>
+            </ComboBox>
+            <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="189.0" layoutY="45.0" mnemonicParsing="false" onAction="#editMaterial" prefHeight="25.0" prefWidth="32.0">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/SettingsImg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="509.0" prefHeight="115.0" prefWidth="254.0" style="-fx-background-color: #1111;">
@@ -60,10 +82,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="operacionalCombo" layoutX="33.0" layoutY="41.0" prefHeight="25.0" prefWidth="189.0">
-               <tooltip>
-                  <Tooltip text="Aqui você pode adicionar um modelo Operacional (é essencial para o calculo)" />
-               </tooltip></ComboBox>
             <Button layoutX="33.0" layoutY="76.0" mnemonicParsing="false" onAction="#addOperacional" text="Adicionar">
                <tooltip>
                   <Tooltip text="Aqui você pode adicionar um modelo Operacional" />
@@ -72,6 +90,20 @@
                <tooltip>
                   <Tooltip text="Aqui você pode remover um Modelo Operacional (O valor padrão não pode ser removido)" />
                </tooltip></Button>
+            <ComboBox fx:id="operacionalCombo" layoutX="36.0" layoutY="46.0" prefHeight="25.0" prefWidth="155.0">
+               <tooltip>
+                  <Tooltip text="Selecione uma máquina" />
+               </tooltip>
+            </ComboBox>
+            <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="191.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/SettingsImg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="2.0" layoutY="124.0" prefHeight="262.0" prefWidth="278.0" style="-fx-background-color: #1111;">
@@ -114,37 +146,48 @@
       <Label fx:id="hourMachinePrice" layoutX="454.0" layoutY="131.0" text="0,0R$" />
       <Label layoutX="290.0" layoutY="149.0" text="Minuto Máquina:" />
       <Label fx:id="minuteMachinePrice" layoutX="454.0" layoutY="149.0" text="0,0R$" />
-      <Label layoutX="290.0" layoutY="360.0" text="Valor total:">
+      <Label layoutX="534.0" layoutY="171.0" text="Valor total:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="totalValue" layoutX="454.0" layoutY="360.0" text="0,0R$">
+      <Label fx:id="totalValue" layoutX="698.0" layoutY="171.0" text="0,0R$">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <Label layoutX="290.0" layoutY="167.0" text="Custo Material:" />
       <Label fx:id="materialCost" layoutX="454.0" layoutY="167.0" text="0,0R$" />
-      <Label layoutX="290.0" layoutY="334.0" text="Lucro estimado:">
+      <Label layoutX="534.0" layoutY="145.0" text="Lucro estimado:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="estimatedProfit" layoutX="454.0" layoutY="334.0" text="0,0R$">
+      <Label fx:id="estimatedProfit" layoutX="698.0" layoutY="145.0" text="0,0R$">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="290.0" layoutY="308.0" text="Valor produção:">
+      <Label layoutX="534.0" layoutY="119.0" text="Valor produção:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="productionValue" layoutX="454.0" layoutY="308.0" text="0,0R$">
+      <Label fx:id="productionValue" layoutX="698.0" layoutY="119.0" text="0,0R$">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Label alignment="CENTER" layoutX="351.0" layoutY="360.0" text="Criado e Desenvolvido por: Augusto Winkler." textFill="#797979">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Line endX="353.0" endY="-1.52587890625E-5" layoutX="382.0" layoutY="199.0" startX="-90.80001831054688" startY="-1.52587890625E-5" stroke="#949494" strokeWidth="2.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="438.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Laser.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -51,6 +51,34 @@ public class MachineDAO {
 		}
 	}
 
+	public static void editMachine(String oldName, String newName, double value, double usefulLife,
+			double residualValue, double laserValue, double laserUsefulLife) {
+		String sql = """
+				UPDATE Machines
+				SET name = ?, value = ?, usefulLife = ?, residualValue = ?, laserValue = ?, laserUsefulLife = ?
+				WHERE name = ?;
+				""";
+
+		try (Connection conn = DataBaseConnection.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, newName);
+			pstmt.setDouble(2, value);
+			pstmt.setDouble(3, usefulLife);
+			pstmt.setDouble(4, residualValue);
+			pstmt.setDouble(5, laserValue);
+			pstmt.setDouble(6, laserUsefulLife);
+			pstmt.setString(7, oldName);
+
+			int rowsAffected = pstmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Machine updated successfully.");
+			} else {
+				System.out.println("No machine found with the given name.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static Machine findMachine(String name) {
 		String sql = "SELECT * FROM Machines;";
 

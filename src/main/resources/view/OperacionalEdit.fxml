@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="308.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OperacionalInputController">
-    <Label text="Adicionar Operacional">
+<VBox alignment="CENTER" prefHeight="308.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OperacionalEditController">
+    <Label text="Operacional">
       <font>
          <Font size="18.0" />
       </font></Label>
@@ -16,7 +16,7 @@
     <TextField fx:id="txtHoursPerDay" alignment="CENTER" promptText="Horas Diárias" />
    <TextField fx:id="txtOperacionalCosts" alignment="CENTER" promptText="Despesas Operacionais" />
     <TextField fx:id="txtOperatorValue" alignment="CENTER" promptText="Custo Operador" />
-    <Button onAction="#addOperacional" prefHeight="26.0" prefWidth="145.0" text="Salvar">
+    <Button onAction="#editOperacional" prefHeight="26.0" prefWidth="145.0" text="Salvar">
       <font>
          <Font size="18.0" />
       </font></Button>

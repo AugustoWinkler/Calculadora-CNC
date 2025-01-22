@@ -50,6 +50,29 @@ public class MaterialDAO {
 			System.out.println("Erro ao remover máquina: " + e.getMessage());
 		}
 	}
+	
+	public static void editMaterial(String oldName, String newName, double value) {
+		String sql = """
+				UPDATE Materials
+				SET name = ?, value = ?
+				WHERE name = ?;
+				""";
+
+		try (Connection conn = DataBaseConnection.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, newName);
+			pstmt.setDouble(2, value);
+			pstmt.setString(3, oldName);
+
+			int rowsAffected = pstmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Material updated successfully.");
+			} else {
+				System.out.println("No material found with the given name.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static Material findMaterial(String name) {
 		String sql = "SELECT * FROM Materials;";

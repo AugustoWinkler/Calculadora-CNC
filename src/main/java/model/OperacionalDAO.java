@@ -80,6 +80,33 @@ public class OperacionalDAO {
 		}
 	}
 
+	public static void editOperacional(String oldName, String newName, double days, double hours, double addCosts,
+			double operator) {
+		String sql = """
+				UPDATE Operacionals
+				SET name = ?, days = ?, hours = ?, addCosts = ?, operator = ?
+				WHERE name = ?;
+				""";
+
+		try (Connection conn = DataBaseConnection.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, newName);
+			pstmt.setDouble(2, days);
+			pstmt.setDouble(3, hours);
+			pstmt.setDouble(4, addCosts);
+			pstmt.setDouble(5, operator);
+			pstmt.setString(6, oldName);
+
+			int rowsAffected = pstmt.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Operacional updated successfully.");
+			} else {
+				System.out.println("No operacional found with the given name.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public List<Operacional> getAllOperacionals() {
 		List<Operacional> operacionals = new ArrayList<>();
 		String sql = "SELECT * FROM operacionals";

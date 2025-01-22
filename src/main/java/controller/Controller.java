@@ -55,8 +55,11 @@ public class Controller {
 	private validateTextField validate;
 
 	private MachineInputController machineInputController;
+	private MachineEditController machineEditController;
 	private MaterialInputController materialInputController;
+	private MaterialEditController materialEditController;
 	private OperacionalInputController operacionalInputController;
+	private OperacionalEditController operacionalEditController;
 
 	@FXML
 	public void initialize() {
@@ -71,6 +74,7 @@ public class Controller {
 		validate.validateTextInt(materialWidth);
 		validate.validateTextInt(hoursProduction);
 		validate.validateTextInt(hoursProduction);
+		validate.validateTextInt(profit);
 
 	}
 
@@ -87,10 +91,10 @@ public class Controller {
 		materialCombo.getItems().clear();
 
 		List<Material> materials = new MaterialDAO(DataBaseConnection.connect()).getAllMaterials();
+
 		for (Material material : materials) {
 			materialCombo.getItems().add(material.getName());
 		}
-
 	}
 
 	public void updateOperacionalCombo() {
@@ -113,19 +117,38 @@ public class Controller {
 	}
 
 	@FXML
-	private void removeMachine(ActionEvent event) {
-		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Máquina", "essa ação não poderá ser desfeita.",
-				"Tem certeza que deseja remover esta máquina?");
-		if (confirmed) {
-			MachineDAO.removeMachine(machineCombo.getValue());
-			this.updateMachineCombo();
+	private void editMachine(ActionEvent event) throws IOException {
+		if (machineCombo.getValue() == null || machineCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhuma máquina detectada", "Você deve selecionar uma máquina antes");
+			return;
 		}
+		machineEditController = openTabs.openAddTab("/view/MachineEdit.fxml", "Nova Máquina");
+
+		if (machineEditController != null) {
+			machineEditController.setMainController(this);
+		}
+	}
+
+	@FXML
+	private void removeMachine(ActionEvent event) {
+		if (machineCombo.getValue() == null || machineCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhuma máquina detectada", "Você deve selecionar uma máquina antes");
+			return;
+		} else {
+			boolean confirmed = ConfirmationHelper.showConfirmation("Remover Máquina",
+					"essa ação não poderá ser desfeita.", "Tem certeza que deseja remover esta máquina?");
+			if (confirmed) {
+				MachineDAO.removeMachine(machineCombo.getValue());
+				this.updateMachineCombo();
+			}
+		}
+
 	}
 
 	@FXML
 	private void addMaterial(ActionEvent event) throws IOException {
 
-		materialInputController = openTabs.openAddTab("/view/MaterialInput.FXML", "Novo Material");
+		materialInputController = openTabs.openAddTab("/view/MaterialInput.fxml", "Novo Material");
 
 		if (materialInputController != null) {
 			materialInputController.setMainController(this);
@@ -134,18 +157,38 @@ public class Controller {
 
 	@FXML
 	private void removeMaterial(ActionEvent event) {
-		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Material", "essa ação não poderá ser desfeita",
-				"Tem certeza de que deseja remover esta máquina?");
-		if (confirmed) {
-			MaterialDAO.removeMaterial(materialCombo.getValue());
-			this.updateMaterialCombo();
+
+		if (materialCombo.getValue() == null || materialCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhum material detectado", "Você deve selecionar um material antes");
+			return;
+		} else {
+			boolean confirmed = ConfirmationHelper.showConfirmation("Remover Material",
+					"essa ação não poderá ser desfeita", "Tem certeza de que deseja remover esta máquina?");
+			if (confirmed) {
+				MaterialDAO.removeMaterial(materialCombo.getValue());
+				this.updateMaterialCombo();
+			}
+		}
+
+	}
+
+	@FXML
+	private void editMaterial(ActionEvent event) throws IOException {
+		if (materialCombo.getValue() == null || materialCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhum material detectado", "Você deve selecionar um material antes");
+			return;
+		}
+		materialEditController = openTabs.openAddTab("/view/MaterialEdit.fxml", "Editar Material");
+
+		if (materialEditController != null) {
+			materialEditController.setMainController(this);
 		}
 	}
 
 	@FXML
 	private void addOperacional(ActionEvent event) throws IOException {
 
-		operacionalInputController = openTabs.openAddTab("/view/OperacionalInput.FXML", "Novo Horario");
+		operacionalInputController = openTabs.openAddTab("/view/OperacionalInput.fxml", "Novo Horario");
 
 		if (operacionalInputController != null) {
 			operacionalInputController.setMainController(this);
@@ -154,11 +197,31 @@ public class Controller {
 
 	@FXML
 	private void removeOperacional(ActionEvent envet) {
-		boolean confirmed = ConfirmationHelper.showConfirmation("Remover Operacional",
-				"essa ação não poderá ser desfeita", "Tem certeza de que deseja remover este operacional?");
-		if (confirmed) {
-			OperacionalDAO.removeOperacional(operacionalCombo.getValue());
-			this.updateOperacionalCombo();
+
+		if (operacionalCombo.getValue() == null || operacionalCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhum operacional detectado", "Você deve selecionar um operacional antes");
+			return;
+		} else {
+			boolean confirmed = ConfirmationHelper.showConfirmation("Remover Operacional",
+					"essa ação não poderá ser desfeita", "Tem certeza de que deseja remover este operacional?");
+			if (confirmed) {
+				OperacionalDAO.removeOperacional(operacionalCombo.getValue());
+				this.updateOperacionalCombo();
+			}
+		}
+
+	}
+
+	@FXML
+	private void editOperacional(ActionEvent event) throws IOException {
+		if (operacionalCombo.getValue() == null || operacionalCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhum operacional detectado", "Você deve selecionar um operacional antes");
+			return;
+		}
+		operacionalEditController = openTabs.openAddTab("/view/OperacionalEdit.fxml", "Editar Operacional");
+
+		if (operacionalEditController != null) {
+			operacionalEditController.setMainController(this);
 		}
 	}
 
@@ -176,9 +239,14 @@ public class Controller {
 		Operacional operacional = OperacionalDAO.findOperacional(operacionalCombo.getValue());
 
 		System.out.println(machine.toString());
-		if (machine.getName().equals("(Nenhum)")) {
+		if (machineCombo.getValue() == null || machineCombo.getValue().isEmpty()) {
 			AlertHelper.showAlert("Nenhuma máquina selecionada", "Você precisa selecionar uma máquina",
 					"caso não exista nenhuma máquina você pode criar uma apertando no botão adicionar");
+			return;
+		} else if (operacionalCombo.getValue() == null || operacionalCombo.getValue().isEmpty()) {
+			AlertHelper.showAlert("Nenhum operacional selecionado", "Você precisa selecionar um operacional",
+					"caso não exista nenhum operacional você pode criar um apertando no botão adicionar");
+			return;
 		} else {
 			machineHour = calcular.calcTotal(machine.getValue(), machine.getResidualValue(), machine.getUsefulLife(),
 					machine.getLaserValue(), machine.getLaserUsefulLife(), operacional.getHoursPerDay(),
@@ -187,7 +255,7 @@ public class Controller {
 			minuteMachine = machineHour / 60;
 		}
 
-		if (material.getName().equals("(Nenhum)") || materialWidth.getText().equals("")
+		if (materialCombo.getValue() == null || materialCombo.getValue().isEmpty() || materialWidth.getText().equals("")
 				|| materialWidth.getText().equals("")) {
 			materialCostVar = 0;
 		} else {
@@ -219,6 +287,18 @@ public class Controller {
 		productionValue.setText(String.format("%.2f R$", productionCost));
 		estimatedProfit.setText(String.format("%.2f R$", profit));
 		totalValue.setText(String.format("%.2f R$", total));
+	}
+
+	public String getSelectedMachine() {
+		return machineCombo.getValue();
+	}
+
+	public String getSelectedMaterial() {
+		return materialCombo.getValue();
+	}
+
+	public String getSelectedOperacional() {
+		return operacionalCombo.getValue();
 	}
 
 }

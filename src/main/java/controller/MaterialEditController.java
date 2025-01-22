@@ -6,10 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.AlertHelper;
+import model.Material;
 import model.MaterialDAO;
 import model.validateTextField;
 
-public class MaterialInputController {
+public class MaterialEditController {
 	private Controller mainController;
 	@FXML
 	private TextField txtMaterialName;
@@ -25,21 +26,15 @@ public class MaterialInputController {
 	}
 
 	@FXML
-	public void addMaterial(Event e) {
-
+	public void editMaterial(Event e) {
 		try {
-			String name = txtMaterialName.getText().trim();
+			String oldName = mainController.getSelectedMaterial();
+			String newName = txtMaterialName.getText();
+			double value = Double.parseDouble(txtPriceMaterial.getText());
 
-			if (name.isEmpty()) {
-				AlertHelper.showAlert("Falha ao adicionar material", "Campo nome está vazio",
-						"Por favcor, preencha o campo Nome com um valor válido.");
-				return;
-			}
-
-			double price = Double.parseDouble(txtPriceMaterial.getText());
-
-			MaterialDAO.insertMaterial(name, price);
+			MaterialDAO.editMaterial(oldName, newName, value);
 			mainController.updateMaterialCombo();
+
 
 		} catch (NumberFormatException ex) {
 			AlertHelper.showAlert("Falha ao adicionar material", "Valores inválidos",
@@ -54,6 +49,14 @@ public class MaterialInputController {
 
 	public void setMainController(Controller mainController) {
 		this.mainController = mainController;
+		this.showMaterial();
 	}
 
+	public void showMaterial() {
+		String selectedMaterial = mainController.getSelectedMaterial();
+		Material material = MaterialDAO.findMaterial(selectedMaterial);
+
+		txtMaterialName.setText(material.getName());
+		txtPriceMaterial.setText(String.valueOf(material.getPrice()));
+	}
 }

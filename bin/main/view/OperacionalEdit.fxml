@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="308.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OperacionalInputController">
-    <Label text="Adicionar Operacional">
+<VBox alignment="CENTER" prefHeight="308.0" prefWidth="268.0" spacing="10" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OperacionalInputController">
+    <Label text="Operacional">
       <font>
          <Font size="18.0" />
       </font></Label>
