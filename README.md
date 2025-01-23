@@ -19,9 +19,19 @@ O projeto **Calculadora CNC** foi idealizado para resolver um problema comum ao 
 
 Para executar o projeto, é necessário ter o **Java SE 9.0 ou superior** instalado no sistema.
 
+## Download do Executável
+
+Você pode baixar o executável clicando no link abaixo:
+
+[Download Executável - Version 1](https://github.com/AugustoWinkler/LaserCalc/releases/download/Version-1/Calculadora.exe)
+
 ## Descrição da Interface
 
 A interface do usuário foi projetada para ser simples e intuitiva. Na tela principal, podemos observar os seguintes componentes:
+
+![Tela principal](https://github.com/AugustoWinkler/LaserCalc/blob/main/Img/Tela%20Principal.png)
+
+
 
 ### Parte Superior
 - **Campos de Máquina, Material e Operacional**:
@@ -38,6 +48,9 @@ A interface do usuário foi projetada para ser simples e intuitiva. Na tela prin
 
 ## Como Adicionar uma Máquina
 
+
+![Tela Maquina](https://github.com/AugustoWinkler/LaserCalc/blob/main/Img/TelaMaquina.png)
+
 A janela de **Adicionar Máquina** permite preencher as seguintes informações:
 
 - **Nome**: Nome da máquina.
@@ -51,6 +64,8 @@ Após preencher os campos, basta clicar em **Salvar**, e a máquina será regist
 
 ## Como Adicionar um Material
 
+![Tela Material](https://github.com/AugustoWinkler/LaserCalc/blob/main/Img/TelaMaterial.png)
+
 A janela de **Adicionar Material** permite preencher as seguintes informações:
 
 - **Nome**: Nome do material (exemplo: MDF3mm, MDF6mm).
@@ -59,6 +74,8 @@ A janela de **Adicionar Material** permite preencher as seguintes informações:
 Após preencher os campos, basta clicar em **Salvar**, e o material será registrado e poderá ser selecionado na interface principal.
 
 ## Como Adicionar um Operacional
+
+![Tela Operacional](https://github.com/AugustoWinkler/LaserCalc/blob/main/Img/TelaOperacional.png)
 
 A janela de **Adicionar Operacional** permite preencher as seguintes informações:
 
@@ -122,4 +139,4 @@ Onde:
 
 ## Conclusão
 
-O projeto **Calculadora CNC** foi desenvolvido com o objetivo de facilitar o cálculo do valor da hora máquina para máquinas CNC, tornando o processo mais simples, claro e acessível. Através de uma interface intuitiva e com uma lógica de cálculo robusta, este projeto oferece uma solução prática para profissionais e empresas que lidam com corte a laser CNC.
+O projeto **Calculadora CNC** foi desenvolvido com o objetivo de facilitar o cálculo do valor da hora máquina para máquinas CNC, tornando o processo mais simples, claro e acessível. Através de uma interface intuitiva, este projeto oferece uma solução prática pessoas que lidam com corte a laser CNC.
