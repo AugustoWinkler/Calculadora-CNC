@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.DatabaseSetup;
 
@@ -19,6 +20,8 @@ public class App extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
             primaryStage.setTitle("Calculadora CNC");
+            Image icon = new Image(App.class.getResourceAsStream("/assets/LaserIco.png"));
+            primaryStage.getIcons().add(icon);
 
             
         } catch (Exception e) {

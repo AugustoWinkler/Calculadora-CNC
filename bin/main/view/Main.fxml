@@ -95,7 +95,7 @@
                   <Tooltip text="Selecione uma máquina" />
                </tooltip>
             </ComboBox>
-            <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="191.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0">
+            <Button contentDisplay="CENTER" graphicTextGap="0.0" layoutX="191.0" layoutY="46.0" mnemonicParsing="false" onAction="#editOperacional" prefHeight="25.0" prefWidth="32.0">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
